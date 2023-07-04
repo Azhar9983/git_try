@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
 app = Flask(__name__)
 
 #for rendering webpages use templates
@@ -10,7 +10,7 @@ def index():
 #for variables insertions
 
 @app.route('/hello/<user_name>')
-def greet_user(user_name):
+def greet_users(user_name):
     return 'Hello  %s' %user_name
 
 @app.route('/blog/<int:postID>')
@@ -39,3 +39,45 @@ def greet_python():
 def about():
     return render_template('about.html')
 
+#using concepts of URL BULIDING in FLASK
+
+@app.route('/admin')
+def greet_admin():
+    return 'Hello Admin'
+
+@app.route('/guest/<guest>')
+def greet_guest(guest):
+    return 'Hello %s' %guest
+
+@app.route('/user/<user_name>')
+def greet_user(user_name):
+    if user_name == 'admin':
+        return redirect(url_for('greet_admin'))
+    else:
+        return redirect(url_for('greet_guest', guest = user_name))
+
+#trying flask HTTP Methods
+
+
+@app.route('/success/<name>')
+def success(name):
+    return 'Welcome %s' %name 
+
+@app.route('/login',methods= ['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        user = request.form['nm']
+        return redirect(url_for('success',name=user))
+    else:
+        user = request.args.get('nm')
+        return redirect(url_for('success', name = user))
+    
+#trying flask templates with parameters
+
+@app.route('/hi/<user>')
+def hello_user(user):
+    return render_template('hello.html',name = user)
+
+@app.route('/result/<int:score>')
+def result_display(score):
+    return render_template('result.html',marks = score)
