@@ -21,4 +21,21 @@ def show_blog(postID):
 def revision(revNo):
     return 'Revision Number %f' %revNo
 
+#trailing / in /python/ is used to access it as both /python & /python/ 
+# because it has become a canonical URL
+# where as /flask will only be accessible using /flask not /flask/ 
+
+@app.route('/flask')
+def greet_flask():
+    return 'Hello Flask'
+
+@app.route('/python/')
+def greet_python():
+    return 'Hello Python'
+
+#added a webpage 'about' in the web server
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
 
