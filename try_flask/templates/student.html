@@ -1,7 +1,23 @@
 <html>
     <head>
-        <title>HOMEPAGE</title>  
+        <title>
+            Exam Score Entry Form 
+        </title>
         <style>
+            form {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+                text-align: center;
+                border: 1px solid black;
+                padding: 5%;
+                display: inline-table;
+            }
+            p {
+                text-align: right;
+
+            }
             a {
                 
                 background-color: white;
@@ -41,10 +57,22 @@
         <a href="http://localhost:5000/index.html">INDEX</a>
         <a href="http://localhost:5000/contact.html">CONTACT</a>
         <br>
-
-        <h1>This is Home page</h1>
-        <br>
-        <a href="/login/">LOGIN</a>
         
+
+        <br><br><br>
+
+        <h2>Enter Exam Score</h2>
+        <br><br>
+        <form action="http://localhost:5000/result" method="POST">
+            
+            <p>Name <input type="text" name="Name"/></p>
+            <p>Physics <input type="text" name="Physics"/></p>
+            <p>Chemistry <input type="text" name="Chemistry"/></p>
+            <p>Maths <input type="text" name="Maths"/></p>
+            <p>Biology <input type="text" name="Biology"/></p>
+            <p><input type="submit" value="submit"/></p>
+
+        </form>
     </body>
+
 </html>

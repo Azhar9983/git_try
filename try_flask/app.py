@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, make_response
 app = Flask(__name__)
 
 
@@ -29,16 +29,23 @@ def about():
 def about_webpage():
     return redirect(url_for("about"))
 
+@app.route('/student/')
+def student():
+    return render_template('student.html')
 
-@app.route('/result/')
+@app.route('/result/', methods = ['POST', 'GET'])
 def result():
-    dict = {
-        'Physics' : 75,
-        'Chemistry' : 70,
-        'Maths' : 80,
-        'Biology' : 65
-    }
-    return render_template('result.html', result = dict)
+    # dict = {
+    #     'Physics' : 75,
+    #     'Chemistry' : 70,
+    #     'Maths' : 80,
+    #     'Biology' : 65
+    # }
+    #modified to use post method
+
+    if request.method == 'POST':
+        result = request.form
+        return render_template('result.html', result = result)
 
 @app.route('/result.html/')
 def result_webpage():
@@ -53,6 +60,20 @@ def index():
 def index_webpage():
     return redirect(url_for("index"))
 
+@app.route('/setcookie/', methods = ['POST', 'GET'])
+def setcookie():
+    if request.method == 'POST':
+        user = request.form['nm']
+
+    resp = make_response(render_template('readcookie.html'))
+    resp.set_cookie('userID', user)
+
+    return resp
+
+@app.route('/getcookie/')
+def getcookie():
+    name = request.cookies.get('userID')
+    return '<h1>welcome' +name+ '</h1>'
 
 @app.route('/contact/')
 def contact():
@@ -66,52 +87,50 @@ def contact_webpage():
 #-----------------------------------------------------------------
 #for variables insertions
 
-@app.route('/hello/<user_name>')
-def greet_users(user_name):
-    return 'Hello  %s' %user_name
+# @app.route('/hello/<user_name>')
+# def greet_users(user_name):
+#     return 'Hello  %s' %user_name
 
-@app.route('/blog/<int:postID>')
-def show_blog(postID):
-    return 'Blog Number %d' %postID
+# @app.route('/blog/<int:postID>')
+# def show_blog(postID):
+#     return 'Blog Number %d' %postID
 
-@app.route('/rev/<float:revNo>')
-def revision(revNo):
-    return 'Revision Number %f' %revNo
+# @app.route('/rev/<float:revNo>')
+# def revision(revNo):
+#     return 'Revision Number %f' %revNo
 
 #trailing / in /python/ is used to access it as both /python & /python/ 
 # because it has become a canonical URL
 # where as /flask will only be accessible using /flask not /flask/ 
 
-@app.route('/flask')
-def greet_flask():
-    return 'Hello Flask'
+# @app.route('/flask')
+# def greet_flask():
+#     return 'Hello Flask'
 
-@app.route('/python/')
-def greet_python():
-    return 'Hello Python'
-
-#added a webpage 'about' in the web server
+# @app.route('/python/')
+# def greet_python():
+#     return 'Hello Python'
 
 
 
-#using concepts of URL BULIDING in FLASK
+# #using concepts of URL BULIDING in FLASK
 
-@app.route('/admin')
-def greet_admin():
-    return 'Hello Admin'
+# @app.route('/admin')
+# def greet_admin():
+#     return 'Hello Admin'
 
-@app.route('/guest/<guest>')
-def greet_guest(guest):
-    return 'Hello %s' %guest
+# @app.route('/guest/<guest>')
+# def greet_guest(guest):
+#     return 'Hello %s' %guest
 
-@app.route('/user/<user_name>')
-def greet_user(user_name):
-    if user_name == 'admin':
-        return redirect(url_for('greet_admin'))
-    else:
-        return redirect(url_for('greet_guest', guest = user_name))
+# @app.route('/user/<user_name>')
+# def greet_user(user_name):
+#     if user_name == 'admin':
+#         return redirect(url_for('greet_admin'))
+#     else:
+#         return redirect(url_for('greet_guest', guest = user_name))
 
-
+# #-----------------------------------------------------------------------
 @app.route('/success/<name>')
 def success(name):
     return 'Looged in as %s' %name 
@@ -128,15 +147,15 @@ def validate():
     
 #trying flask templates with parameters
 
-@app.route('/hi/<user>')
-def hello_user(user):
-    return render_template('hello.html',name = user)
+# @app.route('/hi/<user>')
+# def hello_user(user):
+#     return render_template('hello.html',name = user)
 
-@app.route('/result/<int:score>')
-def result_display(score):
-    return render_template('result.html',marks = score)
+# @app.route('/result/<int:score>')
+# def result_display(score):
+#     return render_template('result.html',marks = score)
 
-#trying tabular data feeding in Flask
+#------------------------------------------------------------------------
 
 
 
