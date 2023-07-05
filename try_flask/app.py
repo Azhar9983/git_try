@@ -81,3 +81,14 @@ def hello_user(user):
 @app.route('/result/<int:score>')
 def result_display(score):
     return render_template('result.html',marks = score)
+
+#trying tabular data feeding in Flask
+@app.route('/result/')
+def result():
+    dict = {
+        'Physics' : 75,
+        'Chemistry' : 70,
+        'Maths' : 80,
+        'Biology' : 65
+    }
+    return render_template('result.html', result = dict)
