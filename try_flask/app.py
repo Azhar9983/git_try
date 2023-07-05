@@ -1,6 +1,8 @@
 from flask import Flask, redirect, render_template, url_for, request
 app = Flask(__name__)
 
+
+
 #for rendering webpages use templates
 
 @app.route('/')
