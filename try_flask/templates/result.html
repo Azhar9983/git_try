@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>
+            Tabular Data in Flask
+        </title>
+    </head>
+    <body>
+        <table>
+            {% for key, value in result.items() %}
+            <tr>
+                <th> {{ key }}</th>
+                <td> {{ value }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
