@@ -1,8 +1,6 @@
 <html>
     <head>
-        <title>
-            Tabular Data in Flask
-        </title>
+        <title>GALLARY</title>
         <style>
             h1 {
                 text-align: center;
@@ -18,20 +16,6 @@
                 text-decoration: dotted;
 
             }
-
-            a {
-                
-                background-color: white;
-                border: 2px solid black;
-                color: green;
-                padding: 5px 10px;
-                text-align: center;
-                display: inline-block;
-                font-size: 10px;
-                margin: 2px 5px;
-                cursor: pointer;
-
-            }
         </style>
     </head>
     <body>
@@ -42,15 +26,6 @@
         <a href="result.html">RESULT</a>
         <a href="index.html">INDEX</a>
         <a href="contact.html">CONTACT</a>
-        <br>
-        <h1>This is result Page</h1>
-        <table style="margin-left: auto; margin-right: auto;">
-            {% for key, value in result.items() %}
-            <tr>
-                <th> {{ key }}</th>
-                <td> {{ value }} </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <h1>This is Gallary Page</h1>
     </body>
 </html>

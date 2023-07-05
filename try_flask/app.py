@@ -1,12 +1,69 @@
 from flask import Flask, redirect, render_template, url_for, request
 app = Flask(__name__)
 
-#for rendering webpages use templates
+
 
 @app.route('/')
+def home():
+    return render_template('Home.html')
+
+@app.route('/Home.html/')
+def home_webpage():
+    return redirect(url_for("home"))
+
+
+@app.route('/gallary/')
+def gallary():
+    return render_template("gallary.html")
+
+@app.route('/gallary.html/')
+def gallary_webpage():
+    return redirect(url_for("gallary"))
+
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+@app.route('/about.html/')
+def about_webpage():
+    return redirect(url_for("about"))
+
+
+@app.route('/result/')
+def result():
+    dict = {
+        'Physics' : 75,
+        'Chemistry' : 70,
+        'Maths' : 80,
+        'Biology' : 65
+    }
+    return render_template('result.html', result = dict)
+
+@app.route('/result.html/')
+def result_webpage():
+    return redirect(url_for('result'))
+
+
+@app.route('/index/')
 def index():
     return render_template('index.html')
 
+@app.route('/index.html/')
+def index_webpage():
+    return redirect(url_for("index"))
+
+
+@app.route('/contact/')
+def contact():
+    return render_template("contact.html")
+
+@app.route('/contact.html/')
+def contact_webpage():
+    return redirect(url_for("contact"))
+
+
+#-----------------------------------------------------------------
 #for variables insertions
 
 @app.route('/hello/<user_name>')
@@ -35,9 +92,7 @@ def greet_python():
 
 #added a webpage 'about' in the web server
 
-@app.route('/about/')
-def about():
-    return render_template('about.html')
+
 
 #using concepts of URL BULIDING in FLASK
 
@@ -56,21 +111,20 @@ def greet_user(user_name):
     else:
         return redirect(url_for('greet_guest', guest = user_name))
 
-#trying flask HTTP Methods
-
 
 @app.route('/success/<name>')
 def success(name):
-    return 'Welcome %s' %name 
+    return 'Looged in as %s' %name 
 
-@app.route('/login',methods= ['POST', 'GET'])
+@app.route('/login/')
 def login():
-    if request.method == 'POST':
-        user = request.form['nm']
-        return redirect(url_for('success',name=user))
-    else:
-        user = request.args.get('nm')
-        return redirect(url_for('success', name = user))
+    return render_template("login.html")
+
+@app.route('/validate/', methods = ['POST'])
+def validate():
+    if request.method == 'POST' and request.form['pass'] == 'Ansari@123':
+        return redirect(url_for('success', name = request.form['email']))
+    return redirect(url_for('login'))
     
 #trying flask templates with parameters
 
@@ -83,12 +137,20 @@ def result_display(score):
     return render_template('result.html',marks = score)
 
 #trying tabular data feeding in Flask
-@app.route('/result/')
-def result():
-    dict = {
-        'Physics' : 75,
-        'Chemistry' : 70,
-        'Maths' : 80,
-        'Biology' : 65
-    }
-    return render_template('result.html', result = dict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
