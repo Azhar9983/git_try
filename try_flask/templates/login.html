@@ -1,9 +1,88 @@
 <html>
+    <head>
+        <title>
+            LOGIN PAGE
+        </title>
+        <style>
+            a {
+                
+                background-color: white;
+                border: 2px solid black;
+                color: green;
+                padding: 5px 10px;
+                text-align: center;
+                display: inline-block;
+                font-size: 10px;
+                margin: 2px 5px;
+                cursor: pointer;
+
+            }
+
+            h1 {
+                text-align: center;
+                color: black;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+
+            body {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            table {
+            
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+
+            }
+
+            .submit {
+                background-color: white;
+                color: black;
+                padding: 5px 10px;
+                text-align: center;
+                font-size: 15px;
+                margin: 2px 5px;
+                cursor: pointer;
+            }
+
+        </style>
+    </head>
+
     <body>
-        <form action="http://localhost:5000/login" method="post">
-            <p>Enter Name: </p>
-            <p><input type="text" name="nm"/></p>
-            <p><input type="submit" value="submit"/></p>
+        <h1>DRAZRA GROUP OF COMPANIES</h1>
+        <a href="http://localhost:5000/Home.html">HOME</a>
+        <a href="http://localhost:5000/gallary.html">GALLARY</a>
+        <a href="http://localhost:5000/about.html">ABOUT</a>
+        <!-- <a href="http://localhost:5000/result.html">RESULT</a> -->
+        <a href="http://localhost:5000/index.html">INDEX</a>
+        <a href="http://localhost:5000/contact.html">CONTACT</a>
+        <br>
+        <br><br><br>
+
+        <h1>LOGIN</h1><br><br>
+        <form method="post" action="http://localhost:5000/validate/">
+            <table >
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="pass"></td>
+                </tr>
+                <!--  <tr>
+                    <td style="text-align: center;"><input type="submit" value="Submit"></td>
+                </tr>   -->
+            </table>
+            <br><br><br>
+            <button class="submit" type="submit" value="Submit">Submit</button>
         </form>
     </body>
+
 </html>
